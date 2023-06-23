@@ -11,7 +11,7 @@ class ClipTranslate {
     constructor() {
         var argv = minimist(process.argv.slice(2));
         this.to = argv.to ?? 'it';
-        this.from = argv.from ?? 'en';
+        this.from = argv.from ?? 'ru';
         this.delay = argv.delay ?? 50;
         this.translator = new GoogleTranslator({
             headers: {
@@ -25,17 +25,23 @@ class ClipTranslate {
     }
     async run() {
         await this.sleep(this.delay);
-        let clipText = await clipboard.read();
-        if (clipText != this.text && clipText != '') {
-            this.text = clipText;
-            // clipText
-            let translated = await this.translator.translate(this.text, this.from, this.to);
-            notifier.notify({
-                title: clipText,
-                message: translated
-            });
-            this.text = translated;
-            clipboard.writeSync(translated);
+        try {
+            let clipText = await clipboard.read();
+            if (clipText != this.text && clipText != '') {
+                this.text = clipText;
+                // clipText
+                let translated = await this.translator.translate(this.text, this.from, this.to);
+                notifier.notify({
+                    title: clipText,
+                    message: translated
+                });
+                this.text = translated;
+                clipboard.writeSync(translated);
+            }
+        }
+        catch (e) {
+            notifier.notify('Error translate');
+            console.log(e);
         }
         this.run();
     }
