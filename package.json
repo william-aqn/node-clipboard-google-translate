@@ -1,0 +1,39 @@
+{
+  "name": "clipboard-google-translate",
+  "version": "1.0.0",
+  "description": "Ctrl+C text-to-translate, wait, Ctrl+V translated text",
+  "type": "module",
+  "main": "translator.js",
+  "scripts": {
+    "start": "tsc && node --experimental-specifier-resolution=node dist/translator.js",
+    "exe": "tsc && nexe --verbose --build --input dist/translator.js --output dist/translator.exe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/william-aqn/node-clipboard-google-translate.git"
+  },
+  "author": "DCRM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/william-aqn/node-clipboard-google-translate/issues"
+  },
+  "homepage": "https://github.com/william-aqn/node-clipboard-google-translate#readme",
+  "dependencies": {
+    "@translate-tools/core": "^0.2.15",
+    "clipboardy": "^3.0.0",
+    "minimist": "^1.2.8",
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^20.3.1",
+    "@types/node-notifier": "^8.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.3"
+  }
+}
