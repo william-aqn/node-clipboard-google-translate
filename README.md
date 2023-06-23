@@ -1,0 +1,1 @@
+# node-clipboard-google-translate
