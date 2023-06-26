@@ -2,11 +2,11 @@
   "name": "clipboard-google-translate",
   "version": "1.0.0",
   "description": "Ctrl+C text-to-translate, wait, Ctrl+V translated text",
-  "type": "module",
-  "main": "translator.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && node --experimental-specifier-resolution=node dist/translator.js",
-    "exe": "tsc && nexe --verbose --build --input dist/translator.js --output dist/translator.exe"
+    "build": "webpack --mode production",
+    "start": "webpack && qode ./dist/index.js",
+    "debug": "webpack && qode --inspect ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/william-aqn/node-clipboard-google-translate#readme",
   "dependencies": {
+    "@nodegui/nodegui": "^0.61.0",
     "@translate-tools/core": "^0.2.15",
     "clipboardy": "^3.0.0",
     "minimist": "^1.2.8",
@@ -34,6 +35,13 @@
     "eslint-config-prettier": "^8.3.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "@nodegui/packer": "^1.5.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "file-loader": "^6.2.0",
+    "native-addon-loader": "^2.0.1",
+    "ts-loader": "^9.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }
