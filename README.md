@@ -12,4 +12,4 @@ npm run debug - отладка
 npm run build - создать zip с релизом
 ```
 
-Версия без gui доступна в ветке **main**
+Версия без gui доступна в ветке **[simple](https://github.com/william-aqn/node-clipboard-google-translate/tree/simple)**
