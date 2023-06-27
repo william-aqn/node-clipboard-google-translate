@@ -2,7 +2,7 @@
 1. [Скачать актуальную версию переводчика](https://raw.githubusercontent.com/william-aqn/node-clipboard-google-translate/gui/release/clipboard-google-translate_1.0.1.zip)
 2. Распаковать куда нибудь
 3. Запустить qode.exe
-4. Заполнить выбрать переводчик и заполнить API ключ
+4. Выбрать переводчик и заполнить API ключ
 
 *Ctrl+C текст для перевода, ждём, Ctrl+V переведённый текст*
 
