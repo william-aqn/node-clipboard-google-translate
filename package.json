@@ -4,7 +4,7 @@
   "description": "Ctrl+C text-to-translate, wait, Ctrl+V translated text",
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack --mode production && npx nodegui-packer --pack ./dist && npm-build-zip --source=deploy/win32/build",
+    "build": "webpack --mode production && npx nodegui-packer --pack ./dist && npm-build-zip --source=deploy/win32/build --destination=release/ ",
     "start": "webpack && qode ./dist/index.js",
     "debug": "webpack && qode --inspect ./dist/index.js"
   },
