@@ -52,7 +52,7 @@ class ClipTranslate {
         this.config.delay = argv.delay ?? 200;
         this.config.apiKey = argv.key ?? '';
         this.config.clipboardOverride = false;
-        this.config.translatorCode = argv.translator ?? 'google';
+        this.config.translatorCode = argv.translator ?? 'deepl';
         try {
             if (fs.existsSync(this.configFile)) {
                 this.config = JSON.parse(fs.readFileSync(this.configFile, 'utf8'));
