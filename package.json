@@ -4,7 +4,7 @@
   "description": "Ctrl+C text-to-translate, wait, Ctrl+V translated text",
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode production && npx nodegui-packer --pack ./dist && npm-build-zip --source=deploy/win32/build",
     "start": "webpack && qode ./dist/index.js",
     "debug": "webpack && qode --inspect ./dist/index.js"
   },
@@ -26,21 +26,22 @@
     "node-notifier": "^10.0.1"
   },
   "devDependencies": {
+    "@nodegui/packer": "^1.5.0",
     "@types/minimist": "^1.2.2",
     "@types/node": "^20.3.1",
     "@types/node-notifier": "^8.0.2",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "file-loader": "^6.2.0",
+    "native-addon-loader": "^2.0.1",
+    "npm-build-zip": "^1.0.4",
+    "ts-loader": "^9.3.1",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.3",
-    "@nodegui/packer": "^1.5.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "file-loader": "^6.2.0",
-    "native-addon-loader": "^2.0.1",
-    "ts-loader": "^9.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
