@@ -1,6 +1,7 @@
 
 import { GoogleTranslator } from '@translate-tools/core/translators/GoogleTranslator/index.js';
 import { DeepLTranslator } from '@translate-tools/core/translators/DeepL/index.js';
+import { OpenAiTranslator } from './OpenAiTranslator/index.js';
 import minimist from 'minimist';
 import fs from 'fs';
 
@@ -21,6 +22,7 @@ import {
 
 class ClipTranslate {
     text: string
+    promptDefault: string
     configFile: string
     config: any
     translator: any;
@@ -33,6 +35,7 @@ class ClipTranslate {
     winLangToComboBox: any;
 
     constructor() {
+        this.promptDefault = 'Please translate the user message from #from# to #to#. Make the translation sound as natural as possible.';
         this.configFile = 'config.json';
         // Загружаем настройки
         this.loadConfig();
@@ -61,6 +64,7 @@ class ClipTranslate {
         } catch (e) {
             console.log(e)
         }
+        this.config.prompt = this.config.prompt ?? this.promptDefault;
     }
 
     saveConfig() {
@@ -80,6 +84,19 @@ class ClipTranslate {
             },
             apiKey: this.config.apiKey
         });
+    }
+
+    initOpenAiTranslator() {
+        var myself = this;
+        this.translator = new OpenAiTranslator({
+            apiKey: this.config.apiKey,
+            prompt: this.config.prompt,
+            callback: myself.setOnlyText
+        });
+    }
+
+    setOnlyText(text: string) {
+        this.winText.setPlainText(text);
     }
 
     initDeepL() {
@@ -157,11 +174,25 @@ class ClipTranslate {
             this.saveConfig();
         });
 
+        // Promtp переводчика
+        const promptLabel = new QLabel();
+        promptLabel.setText('Promtp переводчика:');
+        const promptInput = new QLineEdit();
+        promptInput.setObjectName('promptInput');
+        promptInput.setText(this.config.prompt);
+        promptInput.addEventListener('textChanged', (text) => {
+            this.config.prompt = text;
+            this.windowStatus(`Prompt ключ установлен ${text}`);
+            this.initTranslator();
+            this.saveConfig();
+        });
+
         // Выбор переводчика
         const translatorComboBox = new QComboBox();
         translatorComboBox.setObjectName('translatorComboBox');
         translatorComboBox.addItem(undefined, 'google');
         translatorComboBox.addItem(undefined, 'deepl');
+        translatorComboBox.addItem(undefined, 'openai');
         translatorComboBox.setCurrentText(this.config.translatorCode);
 
         translatorComboBox.addEventListener('currentTextChanged', (text) => {
@@ -169,7 +200,7 @@ class ClipTranslate {
             this.initTranslator();
             this.saveConfig();
         });
-        translatorLayout.addWidget(translatorComboBox);
+
 
         // Направление перевода
         const langFromComboBox = new QComboBox();
@@ -185,8 +216,12 @@ class ClipTranslate {
         textWork.setPlainText(``);
 
         // Добавляем настройки переводчика
+        translatorLayout.addWidget(translatorComboBox);
         translatorLayout.addWidget(apiKeyLabel);
         translatorLayout.addWidget(apiKeyInput);
+
+        translatorLayout.addWidget(promptLabel);
+        translatorLayout.addWidget(promptInput);
 
         // Добавляем направление языка и чекбокс
         fieldsetLayout.addWidget(langFromComboBox);
@@ -237,6 +272,8 @@ class ClipTranslate {
     initTranslator() {
         if (this.config.translatorCode == 'deepl') {
             this.initDeepL();
+        } else if (this.config.translatorCode == 'openai') {
+            this.initOpenAiTranslator();
         } else {
             this.initGoogleTranslator();
         }
