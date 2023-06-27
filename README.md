@@ -1,7 +1,8 @@
 # node-clipboard-google-translate
-1. [Скачать актуальную версию переводчика](/release/clipboard-google-translate_1.0.0.zip)
+1. [Скачать актуальную версию переводчика](https://raw.githubusercontent.com/william-aqn/node-clipboard-google-translate/gui/release/clipboard-google-translate_1.0.0.zip)
 2. Распаковать куда нибудь
 3. Запустить qode.exe
+
 
 *Ctrl+C текст для перевода, ждём, Ctrl+V переведённый текст*
 
