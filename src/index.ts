@@ -111,7 +111,7 @@ class ClipTranslate {
     window() {
         const win = new QMainWindow();
         win.setWindowTitle('Translator');
-        win.resize(300, 400);
+        win.resize(600, 400);
 
         // Основная область
         const centralWidget = new QWidget();
@@ -330,7 +330,7 @@ class ClipTranslate {
     setOnlyText(text: string) {
         this.winText.setPlainText(text);
     }
-    
+
     addOnlyText(text: string) {
         this.winText.insertPlainText(text);
     }
