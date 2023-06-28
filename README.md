@@ -9,7 +9,7 @@
   
 *Ctrl+C текст для перевода, ждём, Ctrl+V переведённый текст*
   
-![screen](/assets/main.png)
+![screen](/assets/screen.png)
 
 ## Для разработчиков
 ```
