@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/william-aqn/node-clipboard-google-translate.git"
+    "url": "git+https://github.com/william-aqn/node-clipboard-translate.git"
   },
   "author": "DCRM",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/william-aqn/node-clipboard-google-translate/issues"
+    "url": "https://github.com/william-aqn/node-clipboard-translate/issues"
   },
-  "homepage": "https://github.com/william-aqn/node-clipboard-google-translate#readme",
+  "homepage": "https://github.com/william-aqn/node-clipboard-translate#readme",
   "dependencies": {
     "@nodegui/nodegui": "^0.61.0",
     "@translate-tools/core": "^0.2.15",
