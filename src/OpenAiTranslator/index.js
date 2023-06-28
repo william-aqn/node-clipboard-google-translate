@@ -2,8 +2,9 @@
 
 import { GoogleTranslator } from '@translate-tools/core/translators/GoogleTranslator/index.js';
 import { BaseTranslator } from '@translate-tools/core/util/BaseTranslator';
-import { _axios } from 'axios';
 import { Configuration, OpenAIApi } from "openai";
+
+import ClipTranslate from "../index";
 
 var OpenAiTranslator = function (_super) {
   class OpenAiTranslator {
@@ -50,24 +51,30 @@ var OpenAiTranslator = function (_super) {
       }
     }
     async translateBatch(text, from, to) {
-
-      const promptBuild = `${this.options.prompt}\n#text#`
+      if (!text) {
+        return [''];
+      }
+      const promptBuild = `${this.options.prompt}\nText:\n"""#text#\n"""`
         .replace('#from#', from).replace('#to#', to).replace('#text#', text);
 
-      console.log('Prompt', promptBuild);
+      ClipTranslate.setOnlyText(promptBuild)
+      console.log(`Prompt [ ${promptBuild} ]`);
 
       const configuration = new Configuration({
         apiKey: this.options.apiKey,
       });
       const openai = new OpenAIApi(configuration);
 
+
       // https://stackoverflow.com/questions/73547502/how-do-i-stream-openais-completion-api
       const getText = async (prompt, callback) => {
         const completion = await openai.createCompletion(
           {
             model: "text-davinci-003",
+            //model: "text-curie-001",
             prompt: prompt,
-            max_tokens: 100,
+            max_tokens: 500,
+            //temperature: 0,
             stream: true,
           },
           { responseType: "stream" }
@@ -100,9 +107,10 @@ var OpenAiTranslator = function (_super) {
         });
       };
 
-      const result = await getText(promptBuild, (c) => this.options.callback(c))
-      console.log(result);
-      return result;
+      ClipTranslate.setOnlyText('')
+      const result = await getText(promptBuild, (c) => ClipTranslate.addOnlyText(c))
+      console.log(result.trim());
+      return [result.trim()];
     }
 
   }

@@ -87,16 +87,10 @@ class ClipTranslate {
     }
 
     initOpenAiTranslator() {
-        var myself = this;
         this.translator = new OpenAiTranslator({
             apiKey: this.config.apiKey,
-            prompt: this.config.prompt,
-            callback: myself.setOnlyText
+            prompt: this.config.prompt
         });
-    }
-
-    setOnlyText(text: string) {
-        this.winText.setPlainText(text);
     }
 
     initDeepL() {
@@ -333,6 +327,14 @@ class ClipTranslate {
         return await this.translator.translate(this.text, this.config.from, this.config.to);
     }
 
+    setOnlyText(text: string) {
+        this.winText.setPlainText(text);
+    }
+    
+    addOnlyText(text: string) {
+        this.winText.insertPlainText(text);
+    }
+
     setText(text: string) {
         this.text = text;
         this.winText.setPlainText(this.text);
@@ -344,4 +346,7 @@ class ClipTranslate {
 
 }
 
-new ClipTranslate().run()
+const core = new ClipTranslate()
+core.run()
+export default core
+

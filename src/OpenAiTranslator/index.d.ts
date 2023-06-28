@@ -3,7 +3,6 @@ import { BaseTranslator, TranslatorOptions } from '@translate-tools/core/util/Ba
 export type OpenAiTranslatorOptions = {
   apiKey: string;
   prompt: string;
-  callback: any;
 };
 export declare class OpenAiTranslator extends BaseTranslator<OpenAiTranslatorOptions> {
   static readonly translatorName = "OpenAiTranslator";

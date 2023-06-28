@@ -1,6 +1,6 @@
 {
-  "name": "clipboard-google-translate",
-  "version": "1.0.1",
+  "name": "clipboard-translate",
+  "version": "1.0.2",
   "description": "Ctrl+C text-to-translate, wait, Ctrl+V translated text",
   "main": "dist/index.js",
   "scripts": {
