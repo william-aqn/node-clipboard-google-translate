@@ -6,7 +6,7 @@
    * Google free
    * DeepL
    * OpenAI
-5. Если не запускается - установить [visual c++ redistributable 2019](/release/VC_redist.x64.exe)
+5. Если не запускается - установить [visual c++ redistributable 2019](https://raw.githubusercontent.com/william-aqn/node-clipboard-translate/gui/release/VC_redist.x64.exe)
 
 *Ctrl+C текст для перевода, ждём, Ctrl+V переведённый текст*
   
