@@ -7,6 +7,7 @@
    * DeepL
    * OpenAI
 5. Если не запускается - установить [visual c++ redistributable 2019](https://raw.githubusercontent.com/william-aqn/node-clipboard-translate/gui/release/VC_redist.x64.exe)
+6. Проверить что бы в пути отсутствовали пробелы и кириллические символы
 
 *Ctrl+C текст для перевода, ждём, Ctrl+V переведённый текст*
   
