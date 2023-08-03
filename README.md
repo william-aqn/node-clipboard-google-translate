@@ -6,7 +6,8 @@
    * Google free
    * DeepL
    * OpenAI
-  
+5. Если не запускается - установить [visual c++ redistributable 2019](/release/VC_redist.x64.exe)
+
 *Ctrl+C текст для перевода, ждём, Ctrl+V переведённый текст*
   
 ![screen](/assets/screen.png)
